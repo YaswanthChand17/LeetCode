@@ -1,0 +1,7 @@
+class Solution(object):
+    def digitFrequencyScore(self, n):
+        score = 0
+        for ch in str(n):
+            score += int(ch)
+        return score
+        
