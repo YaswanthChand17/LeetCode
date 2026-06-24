@@ -6,3 +6,4 @@ class Solution(object):
             else: num2=num2-num1
             c+=1
         return c
+ 
