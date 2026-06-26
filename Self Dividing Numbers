@@ -1,0 +1,16 @@
+class Solution(object):
+    def selfDividingNumbers(self, left, right):
+        arr=[]
+        for n in range(left, right+1):
+            temp=n
+            s=0
+            while n>0:
+                rem=n%10
+                if rem==0: 
+                    break
+                if temp%rem ==0:
+                    s+=1
+                n=n//10
+            if len(str(temp))==s:
+                arr.append(temp)
+        return arr
