@@ -1,0 +1,13 @@
+class Solution(object):
+    def numberOfSubstrings(self, s):
+        c={'a': 0,'b': 0,'c': 0}
+        lf=0
+        ans=0
+        n=len(s)
+        for rt in range(n):
+            c[s[rt]] +=1
+            while c['a']>0 and c['b']>0 and c['c']>0:
+                ans+= n-rt
+                c[s[lf]]-= 1
+                lf+=1
+        return ans
