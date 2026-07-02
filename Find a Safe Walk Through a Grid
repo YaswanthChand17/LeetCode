@@ -1,0 +1,22 @@
+class Solution(object):
+    def findSafeWalk(self, grid, health):
+        m=len(grid)
+        n=len(grid[0])
+        INF=10**9
+        d=[[INF]*n for _ in range(m)]
+        d[0][0]=grid[0][0]
+        q=[(0,0)]
+        head=0
+        dir=[(1, 0), (-1, 0), (0, 1), (0, -1)]
+        while head<len(q):
+            r,c=q[head]
+            head+=1
+            for dr,dc in dir:
+                nr=r+dr
+                nc=c+dc
+                if 0<=nr<m and 0<=nc<n:
+                    new=d[r][c]+grid[nr][nc]
+                    if new<d[nr][nc] and new<health:
+                        d[nr][nc]=new
+                        q.append((nr,nc))
+        return d[m-1][n-1]<health
