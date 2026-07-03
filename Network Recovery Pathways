@@ -1,0 +1,55 @@
+class Solution(object):
+    def findMaxPathScore(self, edges, online, k):
+        n = len(online)
+        gp=[[] for _ in range(n)]
+        x=[0]*n
+        mc = 0
+        for u,v,cost in edges:
+            gp[u].append((v,cost))
+            x[v]+=1
+            mc=max(mc,cost)
+
+        q=[]
+        head=0
+        for i in range(n):
+            if x[i]==0:
+                q.append(i)
+        topo = []
+        while head<len(q):
+            node= q[head]
+            head+=1
+            topo.append(node)
+            for v,cost in gp[node]:
+                x[v]-=1
+                if x[v]==0:
+                    q.append(v)
+        def can(score):
+            INF=10**18
+            dist=[INF]*n
+            dist[0]=0
+            for u in topo:
+                if dist[u]==INF:
+                    continue
+
+                if u!=0 and u!=n-1 and not online[u]:
+                    continue
+                for v,cost in gp[u]:
+                    if cost<score:
+                        continue
+                    if v!=n-1 and not online[v]:
+                        continue
+                    new_c=dist[u]+cost
+                    if new_c<dist[v]:
+                        dist[v]=new_c
+            return dist[n-1]<=k
+        l=0
+        r=mc
+        ans=-1
+        while l<=r:
+            m=(l+r)//2
+            if can(m):
+                ans=m
+                l=m+1
+            else:
+                r=m-1
+        return ans
