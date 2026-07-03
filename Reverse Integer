@@ -1,0 +1,14 @@
+class Solution(object):
+    def reverse(self, x):
+        rev=0
+        n=abs(x)
+        while n>0:
+            rem=n%10
+            rev=rev*10+rem
+            n=n//10
+        if rev<-2147483648 or rev>2147483647:
+            return 0
+        elif x<0:
+            return rev*(-1)
+        else:
+            return rev
