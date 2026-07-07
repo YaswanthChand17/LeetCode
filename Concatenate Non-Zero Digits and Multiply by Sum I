@@ -1,6 +1,6 @@
 class Solution(object):
     def sumAndMultiply(self, n):
-        s=0
+        s=0 
         x=0
         i=1
         while n>0:
