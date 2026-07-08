@@ -1,0 +1,11 @@
+from collections import defaultdict
+class Solution(object):
+    def countBadPairs(self, nums):
+        tp=len(nums)*(len(nums)-1)//2  
+        gp=0
+        c_map=defaultdict(int)
+        for i,num in enumerate(nums):
+            dif=num-i
+            gp+=c_map[dif] 
+            c_map[dif]+=1  
+        return tp-gp 
