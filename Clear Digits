@@ -1,0 +1,13 @@
+class Solution(object):
+    def clearDigits(self, s):
+        s=list(s)
+        stack=[] 
+        for m in s:
+            if m.isdigit():
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(m)
+        
+        return "".join(stack)
+        
